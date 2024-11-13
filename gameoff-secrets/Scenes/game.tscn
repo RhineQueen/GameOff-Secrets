@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp7kvn5fiwg8d"]
+
+[ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
+[ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_wkkqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4c2w"]
+bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
+[sub_resource type="Theme" id="Theme_r4c3q"]
+default_font = ExtResource("1_vpoiy")
+default_font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb7m0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_brj82"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgrsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uof1j"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wkkqi")
+
+[node name="BG" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w4c2w")
+
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Gamescreen" type="VBoxContainer" parent="BG/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_r4c3q")
+theme_override_constants/separation = 10
+
+[node name="GameInfo" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bb7m0")
+
+[node name="DataDisplay" type="RichTextLabel" parent="BG/MarginContainer/Gamescreen/GameInfo"]
+layout_mode = 2
+theme_override_constants/line_separation = 5
+bbcode_enabled = true
+text = "Test Here
+Type the colours of the following words:
+[color=crimson]FISH[/color]
+[color=gold]BALL[/color]
+[color=limegreen]HOUSE[/color]
+[color=royalblue]STOVE[/color]"
+fit_content = true
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="InputArea" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_brj82")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/Gamescreen/InputArea"]
+layout_mode = 2
+
+[node name="Caret" type="Label" parent="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="Input" type="LineEdit" parent="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qgrsl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uof1j")
+max_length = 50
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_force_displayed = true
+script = ExtResource("1_1r508")
+
+[connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
