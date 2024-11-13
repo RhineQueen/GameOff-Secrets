@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=15 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_wkkqi"]
+[ext_resource type="Script" path="res://Scripts/data_compiler.gd" id="4_aushr"]
+[ext_resource type="Script" path="res://Scripts/puzzle_generator.gd" id="5_pllv3"]
+[ext_resource type="Script" path="res://Scripts/plaintext_data.gd" id="6_6ba52"]
+[ext_resource type="Script" path="res://Scripts/data_encoder.gd" id="7_025sy"]
+[ext_resource type="Script" path="res://Scripts/result_check.gd" id="8_lhb8j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4c2w"]
 bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
@@ -96,6 +101,21 @@ drag_and_drop_selection_enabled = false
 caret_blink = true
 caret_force_displayed = true
 script = ExtResource("1_1r508")
+
+[node name="DataCompiler" type="Node" parent="."]
+script = ExtResource("4_aushr")
+
+[node name="PuzzleGenerator" type="Node" parent="."]
+script = ExtResource("5_pllv3")
+
+[node name="PlaintextData" type="Node" parent="."]
+script = ExtResource("6_6ba52")
+
+[node name="DataEncoder" type="Node" parent="."]
+script = ExtResource("7_025sy")
+
+[node name="ResultCheck" type="Node" parent="."]
+script = ExtResource("8_lhb8j")
 
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]

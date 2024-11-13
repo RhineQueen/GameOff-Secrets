@@ -1,11 +1,31 @@
 extends Control
 
+signal setup_signals
+signal generate_data
+signal check_results(player_input, puzzle_params)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
+	#signal setup_signals
+
+#func GAME SETUP SIGNALS
+	#connect generate_data to PuzzleGenerator and PlaintextData
+	#connect check_results to ResultCheck
 
 
 func _on_input_text_submitted(new_text: String) -> void:
-	if new_text == "red yellow green blue":
-		print("yes")
+	pass
+	#Signal ResultCheck, pass new_text and stored puzzle parameters.
+	#Process return from ResultCheck and modify game state accordingly.
+	#Signal PlaintextData and PuzzleGenerator to trigger a new puzzle.
+
+
+#func PUZZLE GEN NEW PARAMS
+	#store new params
+
+#func DATA COMPILER NEW FINAL DATA
+	#set DataDisplay text contents as new final data
+
+#func RESULTCHECK RESULTS COMPLETE
+	#update game state based on results.
