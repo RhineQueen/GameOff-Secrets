@@ -1,6 +1,5 @@
 extends Node
 
-
 signal results_complete(correct_entries, incorrect_entries)
 
 var correct : int

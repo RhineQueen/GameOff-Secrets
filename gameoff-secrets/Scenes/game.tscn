@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=16 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_wkkqi"]
+[ext_resource type="FontFile" uid="uid://cstyigaf2yfve" path="res://Fonts/releaseme.ttf" id="3_imxc7"]
 [ext_resource type="Script" path="res://Scripts/data_compiler.gd" id="4_aushr"]
 [ext_resource type="Script" path="res://Scripts/puzzle_generator.gd" id="5_pllv3"]
 [ext_resource type="Script" path="res://Scripts/plaintext_data.gd" id="6_6ba52"]
@@ -63,8 +64,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bb7m0")
 [node name="DataDisplay" type="RichTextLabel" parent="BG/MarginContainer/Gamescreen/GameInfo"]
 layout_mode = 2
 theme_override_constants/line_separation = 5
+theme_override_fonts/italics_font = ExtResource("3_imxc7")
 bbcode_enabled = true
-text = "Test Here
+text = "[i]secret scovex text here[/i]
 Type the colours of the following words:
 [color=crimson]FISH[/color]
 [color=gold]BALL[/color]
