@@ -104,6 +104,14 @@ caret_blink = true
 caret_force_displayed = true
 script = ExtResource("1_1r508")
 
+[node name="TESTButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 618.0
+offset_top = 438.0
+offset_right = 715.0
+offset_bottom = 475.0
+text = "TEST"
+
 [node name="DataCompiler" type="Node" parent="."]
 script = ExtResource("4_aushr")
 
