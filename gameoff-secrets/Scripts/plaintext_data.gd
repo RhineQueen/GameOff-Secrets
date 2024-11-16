@@ -1,21 +1,34 @@
 extends Node
 
-signal new_plaintext(plaintext_data)
+signal new_plaintext(plaintext_data: Array)
 
-var plaintext_data : String
+var plaintext_data: Array
+var plaintext_string: String
+var cipher_level: int = 0
+var text_depth: int = randi_range(0,2)
 
 #func GAME SETUP SIGNALS
 	#connect new_plaintext to DAATA ENCODER
 
-#func MAIN GENERATE NEW
-	#plaintext_data = get_from_storage()
-	#signal new_plaintext
+func _on_game_generate_data() -> void:
+	plaintext_string = get_from_storage()
+	plaintext_data = [plaintext_string, text_depth]
+	new_plaintext.emit(plaintext_data)
 
 func get_from_storage()->String:
-	#TODO determine how to distinguish what level of secret a string should be to encode appropriately
-	
-	#assign vars.
-	var grabber: int = randi_range(0,DataStorage.text_strings.size()-1)
-	var new_string = DataStorage.text_strings[grabber]
+	var grabber: int
+	var new_string: String
+
+	#return int 0-2 for checking in encoder. 0 - no cypher, 1 - italics(Scovex font), 2 - cipher and leet encode
+	match text_depth:
+		0:
+			grabber = randi_range(0,DataStorage.text_strings_surface.size()-1)
+			new_string = DataStorage.text_strings_surface[grabber]
+		1:
+			grabber = randi_range(0,DataStorage.text_strings_shallow.size()-1)
+			new_string = DataStorage.text_strings_shallow[grabber]
+		2:
+			grabber = randi_range(0,DataStorage.text_strings_deep.size()-1)
+			new_string = DataStorage.text_strings_deep[grabber]
 	print(new_string)
 	return new_string

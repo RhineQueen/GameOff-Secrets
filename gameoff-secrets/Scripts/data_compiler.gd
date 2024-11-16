@@ -1,6 +1,6 @@
 extends Node
 
-signal new_final_data(final_data)
+signal new_final_data(final_data: String)
 
 var new_params : Array[Array]
 var params_ready : bool = false
@@ -12,26 +12,36 @@ var final_data: String
 #func GAME SETUP SIGNALS
 	#connect new_final_data to GAME
 
-#func PUZZLEGENERATOR NEW PARAMS
+
+func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
 	#store new params.
+	new_params = parameters
 	#set params_ready true.
-	#check if it has recieved BOTH params and encoded ready are true.
-	#call compile func if so.
+	params_ready = true
+	#check if it has recieved BOTH params and encoded.
+	if params_ready and encoded_ready:
+		compile_data()
 
-#func DATAENCODER NEW ENCODED
+
+func _on_data_encoder_new_encoded(encoded_data: String) -> void:
 	#store new encoded.
+	new_encoded = encoded_data
 	#set encoded_ready true.
-	#check if it has recieved BOTH params and encoded ready are true.
-	#call compile func if so.
+	encoded_ready = true
+	#check if it has recieved BOTH params and encoded.
+	if params_ready and encoded_ready:
+		compile_data()
 
-#func COMPILE
+
+func compile_data():
 	#Unset params and encoded ready bools
+	params_ready = false
+	encoded_ready = false
 	#Generate BBcoded Keywords based on new_params(consult Puzzle Dictionary)
-	#make_keywords(int # of words)
-	#Split new_encoded into an array of words and insert the generated keyword into a random point in the array.
-	#insert_keywords(keyword Array, new_encoded String)
-	#Convert the appended array to a string.
-	#Signal new_final_data
+	temp_keywords = make_keywords(new_params.size())
+	#Insert keywords and return final string
+	final_data = insert_keywords(temp_keywords, new_encoded)
+	new_final_data.emit(final_data)
 
 
 func make_keywords(num_of_words: int)-> Array[String]:
@@ -69,15 +79,15 @@ func insert_keywords(keywords: Array[String], text: String)-> String:
 		#var insert_pnt: int = randi_range(1, keywords.size())
 		text_array.insert(randi_range(1, max_range), keywords.pop_front())
 	
-	#finalize array into string and return string.
+	#finalize array into string, replacing spaces, and return string.
 	for i in text_array:
 		finalized += String(i) + " "
+	
 	return finalized
 
 
 
-func _on_test_button_pressed() -> void:
-	new_params = [[1,3,2],[2,1,0],[3,0,1],[4,2,3]]
-	temp_keywords = make_keywords(new_params.size())
-	final_data = insert_keywords(temp_keywords, DataStorage.text_strings.pick_random())
-	print(final_data)
+#func _on_test_button_pressed() -> void:
+	#new_params = [[1,3,2],[2,1,0],[3,0,1],[4,2,3]]
+	#final_data = insert_keywords(temp_keywords, DataStorage.text_strings.pick_random())#should later be new_encoded instead of pick random
+	#print(final_data)

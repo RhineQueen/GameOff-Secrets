@@ -1,17 +1,28 @@
 extends Node
 
-signal new_encoded(encoded_data)
+signal new_encoded(encoded_data: String)
 
 var encoded_data : String
+var temp_data: String
 
 #func GAME SETUP SIGNALS
 	#connect new_encoded to DATA COMPILER
 
-#func PLAINTEXT NEW PLAINTEXT
-	#Encode plaintext string with atbash cypher.
-	#Run L337 replacement.
 	#Signal new_encoded.
-
+func _on_plaintext_data_new_plaintext(plaintext_data: Array) -> void:
+	temp_data = plaintext_data[0]
+	#TODO add checks for encoding
+	match plaintext_data[1]:
+		0:#plaintext, do nothing
+			pass
+		1:#Scovex font, italics
+			temp_data = "[i]" + temp_data
+			temp_data += "[/i]"
+		2:#junk data, encipher and encode
+			temp_data = atbash_encypher(temp_data)
+			temp_data = leet_encoder(temp_data)
+	encoded_data = temp_data
+	new_encoded.emit(encoded_data)
 
 func atbash_encypher(plaintext_data)-> String:
 	var to_encipher: String = plaintext_data

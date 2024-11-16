@@ -64,4 +64,4 @@ func check_results(player_input:String,current_parameters:Array[Array]):
 	else:
 		print("NO flare")
 	
-	#I WOULD PUT AN EQUATION CHECKER HERE BUT I DON'T FEEL LIKE FIGURING HTAT OUT RIGHT NOW.
+	#I WOULD PUT AN EQUATION CHECKER HERE BUT I DON'T FEEL LIKE FIGURING HTAT OUT RIGHT NOW. math suxxxx Xp

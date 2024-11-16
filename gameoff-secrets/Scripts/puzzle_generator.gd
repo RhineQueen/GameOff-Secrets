@@ -1,22 +1,29 @@
 extends Node
 
-signal new_puzzle_params(parameters)
 
+signal new_puzzle_params(parameters: Array[Array])
+
+var num_of_keywords: int
 var parameters : Array[Array]
 var keyword : Array[int]
 
-func _ready() -> void:
-	pass
+func _on_game_generate_data() -> void:
+	generate_new()
+	new_puzzle_params.emit(parameters)
 
-#func GAME SETUP SIGNALS
+
 	#connect new_puzzle_params to GAME and DATA COMPILER
-
-#func MAIN GENERATE NEW PUZZLE
-	#Decide how many keywords are in this puzzle based on the player's progress.(1-6)
-	#Loop keyword generation for number of keywords
-		#Keyword gnerator returns an int array. Append it to the parameters array.
+#func _on_game_setup_signals() -> void:
+	
 	#Signal new_puzzle_params
-
+	
+	
+func generate_new():
+	#Decide how many keywords are in this puzzle based on the player's progress.(1-6)
+	num_of_keywords = randi_range(1,6)
+	#Loop keyword generation for number of keywords
+	for num in num_of_keywords:
+		parameters.append(generate_keyword())
 
 func generate_keyword() -> Array[int]:
 	#declare vars
