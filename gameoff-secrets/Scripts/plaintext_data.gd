@@ -5,7 +5,7 @@ signal new_plaintext(plaintext_data: Array)
 var plaintext_data: Array
 var plaintext_string: String
 var cipher_level: int = 0
-var text_depth: int = randi_range(0,2)
+var text_depth: int = 0
 
 #func GAME SETUP SIGNALS
 	#connect new_plaintext to DAATA ENCODER
@@ -18,7 +18,8 @@ func _on_game_generate_data() -> void:
 func get_from_storage()->String:
 	var grabber: int
 	var new_string: String
-
+	
+	text_depth = randi_range(0,2)
 	#return int 0-2 for checking in encoder. 0 - no cypher, 1 - italics(Scovex font), 2 - cipher and leet encode
 	match text_depth:
 		0:

@@ -1,6 +1,6 @@
 extends Node
 
-signal results_complete(correct_entries, incorrect_entries)
+signal results_complete(correct_entries: int, incorrect_entries: int)
 
 var correct : int
 var incorrect : int
@@ -8,23 +8,17 @@ var final_results: Array[int]
 var input_assessing_pntr: int = 0
 var params_assessing_pntr: int = 0
 var results: Array[bool]
-#func GAME SETUP SIGNALS
-	#connect results_complete to MAIN
 
-#func CHECK RESULTS SIGNAL
-	#Call check_results
-	#append final_results[correct, incorrect]
-	#return final_results
-	
-#func _on_test_button_pressed() -> void:
-	#check_results("NULLrf-Var_Respec! and other things",[[1,1,1,0,0]])
 
-func check_results(player_input:String,current_parameters:Array[Array]):
+func _on_game_tutorial_check_results(player_input: String, puzzle_params: Array[Array]) -> void:
+	pass # Replace with function body.
+
+func _on_game_check_results(player_input: String, puzzle_params: Array[Array]) -> void:
 	#split player input into an array of strings
 	input_assessing_pntr = 0
 	params_assessing_pntr = 0
 	var input_to_assess: PackedStringArray = player_input.split(" ")
-	var parameters_to_assess: Array[Array] = current_parameters
+	var parameters_to_assess: Array[Array] = puzzle_params
 	var results: Array[bool]
 	
 	#FORMATTING OF RETURNED PARAMETERS [keyword_val,colour_val,flare_val,equate_val,equate_var_val]
@@ -64,4 +58,6 @@ func check_results(player_input:String,current_parameters:Array[Array]):
 	else:
 		print("NO flare")
 	
+	#return results to game
+	results_complete.emit(correct, incorrect)
 	#I WOULD PUT AN EQUATION CHECKER HERE BUT I DON'T FEEL LIKE FIGURING HTAT OUT RIGHT NOW. math suxxxx Xp

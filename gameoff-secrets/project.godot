@@ -22,8 +22,8 @@ DataStorage="*res://Scenes/data_storage.tscn"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=480
+window/size/viewport_width=1440
+window/size/viewport_height=960
 
 [rendering]
 

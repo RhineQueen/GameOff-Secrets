@@ -61,8 +61,14 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_bb7m0")
 
-[node name="DataDisplay" type="RichTextLabel" parent="BG/MarginContainer/Gamescreen/GameInfo"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/MarginContainer/Gamescreen/GameInfo"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="DataDisplay" type="RichTextLabel" parent="BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/line_separation = 5
 theme_override_fonts/italics_font = ExtResource("3_imxc7")
 bbcode_enabled = true
@@ -123,10 +129,12 @@ script = ExtResource("7_025sy")
 [node name="ResultCheck" type="Node" parent="."]
 script = ExtResource("8_lhb8j")
 
+[connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]
 [connection signal="generate_data" from="." to="PlaintextData" method="_on_game_generate_data"]
 [connection signal="setup_signals" from="." to="." method="_on_setup_signals"]
 [connection signal="setup_signals" from="." to="PuzzleGenerator" method="_on_game_setup_signals"]
+[connection signal="tutorial_check_results" from="." to="ResultCheck" method="_on_game_tutorial_check_results"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
 [connection signal="pressed" from="TESTButton" to="DataCompiler" method="_on_test_button_pressed"]
@@ -135,3 +143,4 @@ script = ExtResource("8_lhb8j")
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="DataCompiler" method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_plaintext" from="PlaintextData" to="DataEncoder" method="_on_plaintext_data_new_plaintext"]
 [connection signal="new_encoded" from="DataEncoder" to="DataCompiler" method="_on_data_encoder_new_encoded"]
+[connection signal="results_complete" from="ResultCheck" to="." method="_on_result_check_results_complete"]

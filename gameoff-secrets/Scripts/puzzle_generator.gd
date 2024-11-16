@@ -19,6 +19,9 @@ func _on_game_generate_data() -> void:
 	
 	
 func generate_new():
+	#clear vars
+	keyword.clear()
+	parameters.clear()
 	#Decide how many keywords are in this puzzle based on the player's progress.(1-6)
 	num_of_keywords = randi_range(1,6)
 	#Loop keyword generation for number of keywords
@@ -30,8 +33,8 @@ func generate_keyword() -> Array[int]:
 	var keyword_val: int = 0
 	var color_val: int = 0
 	var flare_val: int = 0
-	var equate_val: int = 0
-	var equate_var_val: int = 0
+	#var equate_val: int = 0
+	#var equate_var_val: int = 0
 	var key_array: Array[int]
 	
 	#TODO:make higher overall completion percent influence
@@ -45,12 +48,12 @@ func generate_keyword() -> Array[int]:
 	#Chance to pick a flare 0-4. 0 means no flare
 	flare_val = randi_range(1,4)
 	#Chance to pick an equataion 0-4. 0 means no equation. 
-	equate_val = randi_range(1,4)
+	#equate_val = randi_range(1,4)
 	#If equation, decide variable value.
-	if equate_val != 0:
-		equate_var_val = randi_range(10,45)
+	#if equate_val != 0:
+		#equate_var_val = randi_range(10,45)
 	
 	#set and return key_array[keyword_val,colour_val,flare_val,equate_val,equate_var_val]
-	key_array = [keyword_val,color_val,flare_val,equate_val,equate_var_val]
+	key_array = [keyword_val,color_val,flare_val]
 	print(key_array)
 	return key_array

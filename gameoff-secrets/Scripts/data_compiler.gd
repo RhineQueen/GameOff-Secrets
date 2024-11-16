@@ -39,6 +39,11 @@ func compile_data():
 	encoded_ready = false
 	#Generate BBcoded Keywords based on new_params(consult Puzzle Dictionary)
 	temp_keywords = make_keywords(new_params.size())
+	#check for italics
+	if new_encoded.begins_with("[i]"):
+		for i in temp_keywords.size():
+			temp_keywords[i] = "[/i]" + temp_keywords[i]
+			temp_keywords[i] += "[i]"
 	#Insert keywords and return final string
 	final_data = insert_keywords(temp_keywords, new_encoded)
 	new_final_data.emit(final_data)
@@ -72,8 +77,8 @@ func make_keywords(num_of_words: int)-> Array[String]:
 
 func insert_keywords(keywords: Array[String], text: String)-> String:
 	var text_array: PackedStringArray = text.split(" ")
-	var finalized: String
-	var max_range: int = text_array.size()
+	var finalized: String = ""
+	var max_range: int = text_array.size()-3
 	
 	while keywords.size() > 0:
 		#var insert_pnt: int = randi_range(1, keywords.size())
