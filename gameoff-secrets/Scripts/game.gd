@@ -4,6 +4,8 @@ signal setup_signals
 signal generate_data
 signal check_results(player_input, puzzle_params)
 
+var current_screen_data: String
+
 
 func _ready() -> void:
 	pass

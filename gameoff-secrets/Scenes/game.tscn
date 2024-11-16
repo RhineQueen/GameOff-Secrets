@@ -67,11 +67,7 @@ theme_override_constants/line_separation = 5
 theme_override_fonts/italics_font = ExtResource("3_imxc7")
 bbcode_enabled = true
 text = "[i]secret scovex text here[/i]
-Type the colours of the following words:
-[color=crimson]FISH[/color]
-[color=gold]BALL[/color]
-[color=limegreen]HOUSE[/color]
-[color=royalblue]STOVE[/color]"
+[color=gold][[ContVal]][/color]((PointInt))[color=crimson]TilReup[/color][color=royalblue]{{CalVerr}}[/color]"
 fit_content = true
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false

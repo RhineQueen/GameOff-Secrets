@@ -1,8 +1,10 @@
 extends Node
 
 var keyword_builder_key: Dictionary
-var colour_builder_key: Dictionary
-var flare_builder_key: Dictionary
+var colour_builder_key_a: Dictionary
+var colour_builder_key_b: Dictionary
+var flare_builder_key_a: Dictionary
+var flare_builder_key_b: Dictionary
 var keyword_key: Dictionary
 var colour_key: Dictionary
 var flare_key: Dictionary
@@ -22,18 +24,30 @@ func _ready() -> void:
 		8:"QuelFor"
 	}
 	
-	colour_builder_key = {
-		1:["[color=crimson]","[/color]"],
-		2:["[color=gold]","[/color]"],
-		3:["[color=royalblue]","[/color]"],
-		4:["[color=limegreen]","[/color]"]
+	colour_builder_key_a = {
+		1:"[color=crimson]",
+		2:"[color=gold]",
+		3:"[color=royalblue]",
+		4:"[color=limegreen]"
+	}
+	colour_builder_key_b = {
+		1:"[/color]",
+		2:"[/color]",
+		3:"[/color]",
+		4:"[/color]"
 	}
 	
-	flare_builder_key = {
-		1:["((","))"],
-		2:["{{","}}"],
-		3:["[[","]]"],
-		4:["<<",">>"],
+	flare_builder_key_a = {
+		1:"((",
+		2:"{{",
+		3:"[[",
+		4:"<<"
+	}
+	flare_builder_key_b = {
+		1:"))",
+		2:"}}",
+		3:"]]",
+		4:">>"
 	}
 	
 	keyword_key = {
