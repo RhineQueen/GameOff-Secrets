@@ -1,5 +1,8 @@
 extends Node
 
+var keyword_builder_key: Dictionary
+var colour_builder_key: Dictionary
+var flare_builder_key: Dictionary
 var keyword_key: Dictionary
 var colour_key: Dictionary
 var flare_key: Dictionary
@@ -8,6 +11,31 @@ var atbash_key: Dictionary
 var leet_key: Dictionary
 
 func _ready() -> void:
+	keyword_builder_key = {
+		1:"ContVal",
+		2:"PointInt",
+		3:"TilReup",
+		4:"CalVerr",
+		5:"TeeJunct",
+		6:"AwitDIL",
+		7:"REZInit",
+		8:"QuelFor"
+	}
+	
+	colour_builder_key = {
+		1:["[color=crimson]","[/color]"],
+		2:["[color=gold]","[/color]"],
+		3:["[color=royalblue]","[/color]"],
+		4:["[color=limegreen]","[/color]"]
+	}
+	
+	flare_builder_key = {
+		1:["((","))"],
+		2:["{{","}}"],
+		3:["[[","]]"],
+		4:["<<",">>"],
+	}
+	
 	keyword_key = {
 		#"ContVal"
 		1:"Var_Respec",
@@ -29,7 +57,7 @@ func _ready() -> void:
 	
 	colour_key = {
 		#"red"
-		1:"NULLrf",
+		1:"NULLrf-",
 		#"yellow"
 		2:"XPRT_",
 		#"blue"
@@ -49,7 +77,7 @@ func _ready() -> void:
 		4:"^"
 	}
 	
-	#FIGURE HOW TO CHECK EQUATIONS ELSEWHERE HAVE THIS JUST STORE THE RESULT CHECK FUCTION NAME
+	#PROBS CUTTING EQUATIONS FOR THE JAM TIME
 	equation_key = {
 		#_=
 		1:"comp_percent_check",
@@ -88,6 +116,32 @@ func _ready() -> void:
 		"x":"c",
 		"y":"b",
 		"z":"a",
+		"A":"Z",
+		"B":"Y",
+		"C":"X",
+		"D":"W",
+		"E":"V",
+		"F":"U",
+		"G":"T",
+		"H":"S",
+		"I":"R",
+		"J":"Q",
+		"K":"P",
+		"L":"O",
+		"M":"N",
+		"N":"M",
+		"O":"L",
+		"P":"K",
+		"Q":"J",
+		"R":"I",
+		"S":"H",
+		"T":"G",
+		"U":"F",
+		"V":"E",
+		"W":"D",
+		"X":"C",
+		"Y":"B",
+		"Z":"A",
 	}
 	
 	leet_key = {
@@ -97,5 +151,12 @@ func _ready() -> void:
 		"s":"5",
 		"t":"7",
 		"b":"8",
-		"o":"0"
+		"o":"0",
+		"L":"1",
+		"Z":"2",
+		"E":"3",
+		"S":"5",
+		"T":"7",
+		"B":"8",
+		"O":"0"
 	}

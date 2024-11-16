@@ -14,7 +14,7 @@ var encoded_data : String
 
 
 func atbash_encypher(plaintext_data)-> String:
-	var to_encipher: String = plaintext_data.to_lower()
+	var to_encipher: String = plaintext_data
 	var enciphered_data: String = ""
 	
 	#Run cypher based on rules in Puzzle Dictionary preload.

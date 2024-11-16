@@ -129,3 +129,4 @@ script = ExtResource("8_lhb8j")
 
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
+[connection signal="pressed" from="TESTButton" to="DataCompiler" method="_on_test_button_pressed"]
