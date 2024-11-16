@@ -22,8 +22,6 @@ func _ready() -> void:
 
 #func _on_setup_signals() -> void:
 	#connect generate_data to PuzzleGenerator and PlaintextData
-	
-	
 	#connect check_results to ResultCheck
 
 
