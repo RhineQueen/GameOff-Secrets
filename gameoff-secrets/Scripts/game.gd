@@ -1,11 +1,15 @@
 extends Control
 
+#game logic omponents
 @onready var data_compiler: Node = $DataCompiler
 @onready var puzzle_generator: Node = $PuzzleGenerator
 @onready var plaintext_data: Node = $PlaintextData
 @onready var data_encoder: Node = $DataEncoder
 @onready var result_check: Node = $ResultCheck
+#display components
 @onready var data_display: RichTextLabel = $BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer/DataDisplay
+@onready var life_bar: ProgressBar = $BG/MarginContainer/Gamescreen/life_bar
+@onready var completion_bar: ProgressBar = $BG/MarginContainer/Gamescreen/completion_bar
 
 #TODO add feedback for wrong answers and progress bars for Firewall integrity(lives/ lose con) and recovery progress(completion to win con)
 
@@ -23,6 +27,10 @@ var lives: int
 
 
 func _ready() -> void:
+	#reset life and progress
+	#TODO setup constants
+	lives = 100
+	completion_progress = 0
 	#setup for tutorial
 	intro_step = 0
 	in_intro = true
@@ -61,6 +69,7 @@ func _on_result_check_results_complete(correct_entries: int, incorrect_entries: 
 		#Signal PlaintextData and PuzzleGenerator to trigger a new puzzle.
 		generate_data.emit()
 
+
 #Store data from puzzle gen and enciphering
 func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
 	current_puzzle_params = parameters
@@ -72,7 +81,16 @@ func _on_data_compiler_new_final_data(final_data: String) -> void:
 #update display components
 func update_display(new_data: String):
 	data_display.text = new_data
+	life_bar.value = lives
+	completion_bar.value = completion_progress
 
+
+func winloss_handle():
+	if lives <= 0:
+		pass#lose
+	
+	if completion_progress >= 100:#TODO set constant
+		pass#win
 
 #func RESULTCHECK RESULTS COMPLETE
 	#update game state based on results.

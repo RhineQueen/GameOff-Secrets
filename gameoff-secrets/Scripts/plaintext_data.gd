@@ -7,8 +7,6 @@ var plaintext_string: String
 var cipher_level: int = 0
 var text_depth: int = 0
 
-#func GAME SETUP SIGNALS
-	#connect new_plaintext to DAATA ENCODER
 
 func _on_game_generate_data() -> void:
 	plaintext_string = get_from_storage()

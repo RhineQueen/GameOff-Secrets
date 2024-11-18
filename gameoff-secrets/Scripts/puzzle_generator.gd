@@ -22,8 +22,8 @@ func generate_new():
 	#clear vars
 	keyword.clear()
 	parameters.clear()
-	#Decide how many keywords are in this puzzle based on the player's progress.(1-6)
-	num_of_keywords = randi_range(1,6)
+	#Decide how many keywords are in this puzzle based on the player's progress.(1-4)
+	num_of_keywords = 1
 	#Loop keyword generation for number of keywords
 	for num in num_of_keywords:
 		parameters.append(generate_keyword())
@@ -44,9 +44,9 @@ func generate_keyword() -> Array[int]:
 	#Pick a Keyword value between 1 and 8. 0 is the default and used for error catching.
 	keyword_val = randi_range(1,8)
 	#Chance to pick a colour 0-4. 0 means no colour
-	color_val = randi_range(1,4)
+	color_val = randi_range(0,4)
 	#Chance to pick a flare 0-4. 0 means no flare
-	flare_val = randi_range(1,4)
+	flare_val = randi_range(0,4)
 	#Chance to pick an equataion 0-4. 0 means no equation. 
 	#equate_val = randi_range(1,4)
 	#If equation, decide variable value.

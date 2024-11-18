@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=20 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
@@ -25,6 +25,18 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgrsl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uof1j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl2c2"]
+bg_color = Color(0.862745, 0.0784314, 0.235294, 0.0980392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo8e4"]
+bg_color = Color(0.862745, 0.0784314, 0.235294, 0.294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cymo1"]
+bg_color = Color(0.254902, 0.411765, 0.882353, 0.0980392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgf81"]
+bg_color = Color(0.254902, 0.411765, 0.882353, 0.294118)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -95,7 +107,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qgrsl")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uof1j")
-max_length = 50
 context_menu_enabled = false
 clear_button_enabled = true
 shortcut_keys_enabled = false
@@ -106,12 +117,27 @@ caret_blink = true
 caret_force_displayed = true
 script = ExtResource("1_1r508")
 
+[node name="life_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gl2c2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lo8e4")
+step = 1.0
+value = 25.0
+
+[node name="completion_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cymo1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cgf81")
+value = 75.0
+
 [node name="TESTButton" type="Button" parent="."]
 layout_mode = 2
-offset_left = 618.0
-offset_top = 438.0
-offset_right = 715.0
-offset_bottom = 475.0
+offset_left = 1336.0
+offset_top = 9.0
+offset_right = 1433.0
+offset_bottom = 46.0
 text = "TEST"
 
 [node name="DataCompiler" type="Node" parent="."]

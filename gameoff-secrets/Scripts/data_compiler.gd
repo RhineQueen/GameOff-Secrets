@@ -9,9 +9,6 @@ var encoded_ready : bool = false
 var temp_keywords: Array[String]
 var final_data: String
 
-#func GAME SETUP SIGNALS
-	#connect new_final_data to GAME
-
 
 func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
 	#store new params.
@@ -52,7 +49,7 @@ func compile_data():
 func make_keywords(num_of_words: int)-> Array[String]:
 	var new_word: String = ""
 	var new_keywords: Array[String]
-	var param_to_check: int = 0
+	var param_to_check: int
 	
 	#asses params for each keyword needed and generate keyword string
 	for word in num_of_words:
@@ -63,12 +60,12 @@ func make_keywords(num_of_words: int)-> Array[String]:
 				match param_to_check:
 					0:#set Keyword
 						new_word = PuzzleDictionary.keyword_builder_key.get(new_params[word][param]) + new_word
-					1:#add Flare to front and back
-						new_word = PuzzleDictionary.flare_builder_key_a.get(new_params[word][param]) + new_word
-						new_word += PuzzleDictionary.flare_builder_key_b.get(new_params[word][param])
-					2:#add Colour bbcode to front and back
+					1:#add Colour to front and back
 						new_word = PuzzleDictionary.colour_builder_key_a.get(new_params[word][param]) + new_word
 						new_word += PuzzleDictionary.colour_builder_key_b.get(new_params[word][param])
+					2:#add Flare bbcode to front and back
+						new_word = PuzzleDictionary.flare_builder_key_a.get(new_params[word][param]) + new_word
+						new_word += PuzzleDictionary.flare_builder_key_b.get(new_params[word][param])
 			param_to_check += 1
 		new_keywords.append(new_word)
 	

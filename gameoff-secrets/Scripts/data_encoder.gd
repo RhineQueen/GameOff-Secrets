@@ -5,10 +5,7 @@ signal new_encoded(encoded_data: String)
 var encoded_data : String
 var temp_data: String
 
-#func GAME SETUP SIGNALS
-	#connect new_encoded to DATA COMPILER
 
-	#Signal new_encoded.
 func _on_plaintext_data_new_plaintext(plaintext_data: Array) -> void:
 	temp_data = plaintext_data[0]
 	#TODO add checks for encoding
