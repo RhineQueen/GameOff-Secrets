@@ -10,12 +10,6 @@ var keyword : Array[int]
 func _on_game_generate_data() -> void:
 	generate_new()
 	new_puzzle_params.emit(parameters)
-
-
-	#connect new_puzzle_params to GAME and DATA COMPILER
-#func _on_game_setup_signals() -> void:
-	
-	#Signal new_puzzle_params
 	
 	
 func generate_new():

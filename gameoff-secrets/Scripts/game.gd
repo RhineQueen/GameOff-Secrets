@@ -20,7 +20,7 @@ extends Control
 #constants
 const RELEASEME = preload("res://Fonts/releaseme.ttf")
 const WIN_VAL: int = 20
-const MAX_LIFE: int = 20
+const MAX_LIFE: int = 10
 
 #signals
 signal setup_signals
@@ -40,7 +40,6 @@ var lives: int
 
 func _ready() -> void:
 	#reset life and progress
-	#TODO setup constants
 	lives = MAX_LIFE
 	completion_progress = 0
 	#setup for tutorial
@@ -116,6 +115,7 @@ func winloss_handle():
 	
 	if completion_progress >= WIN_VAL:
 		winstate = 1
+		round_timer.stop()
 		#TODO IF I HAVE TIME create an ending_handler that gets signaled here instead of directly stting the data. 
 		#End handler is a match statrement that reads the win state and, like tutorial,
 		#interates through some text, but bypasses results_check for it's own handling.

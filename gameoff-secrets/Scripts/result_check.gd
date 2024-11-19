@@ -9,6 +9,8 @@ var input_assessing_pntr: int = 0
 var params_assessing_pntr: int = 0
 var results: Array[bool]
 
+#TODO IF I EVEN CAN figure out how to check more than one keyword per puzzle
+
 
 func _on_game_tutorial_check_results(player_input: String, puzzle_params: Array[Array]) -> void:
 	pass # Replace with function body.

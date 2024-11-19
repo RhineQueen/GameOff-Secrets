@@ -80,9 +80,9 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_eguma")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wetox")
-max_value = 60.0
+max_value = 30.0
 step = 1.0
-value = 60.0
+value = 30.0
 show_percentage = false
 
 [node name="GameInfo" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
@@ -139,9 +139,9 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_gl2c2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lo8e4")
-max_value = 20.0
+max_value = 10.0
 step = 1.0
-value = 20.0
+value = 10.0
 
 [node name="completion_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
 custom_minimum_size = Vector2(0, 25)
@@ -176,7 +176,7 @@ script = ExtResource("7_025sy")
 script = ExtResource("8_lhb8j")
 
 [node name="round_timer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 30.0
 one_shot = true
 
 [connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
