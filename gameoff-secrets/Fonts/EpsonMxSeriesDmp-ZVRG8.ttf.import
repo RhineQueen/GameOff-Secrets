@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ba6qoiqqq68br"
-path="res://.godot/imported/MerchantCopyDoublesize-jE7R.ttf-aa083ec29ea0277f7c81b1cc7dbb207c.fontdata"
+uid="uid://c4gcb3wh1uhqq"
+path="res://.godot/imported/EpsonMxSeriesDmp-ZVRG8.ttf-a9a55729d51cfc378f76416af82d669c.fontdata"
 
 [deps]
 
-source_file="res://MerchantCopyDoublesize-jE7R.ttf"
-dest_files=["res://.godot/imported/MerchantCopyDoublesize-jE7R.ttf-aa083ec29ea0277f7c81b1cc7dbb207c.fontdata"]
+source_file="res://Fonts/EpsonMxSeriesDmp-ZVRG8.ttf"
+dest_files=["res://.godot/imported/EpsonMxSeriesDmp-ZVRG8.ttf-a9a55729d51cfc378f76416af82d669c.fontdata"]
 
 [params]
 

@@ -12,7 +12,7 @@ extends Control
 @onready var data_display: RichTextLabel = $BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer/DataDisplay
 @onready var life_bar: ProgressBar = $BG/MarginContainer/Gamescreen/life_bar
 @onready var completion_bar: ProgressBar = $BG/MarginContainer/Gamescreen/completion_bar
-@onready var manual: PanelContainer = $Manual
+@onready var manual: PanelContainer = $nocrt/Manual
 
 #input components
 @onready var input: LineEdit = $BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input
