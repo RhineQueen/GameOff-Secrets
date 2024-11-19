@@ -5,6 +5,8 @@ extends LineEdit
 func _ready() -> void:
 	grab_focus()
 
-
 func _on_text_submitted(new_text: String) -> void:
+	clear()
+
+func _on_round_timer_timeout() -> void:
 	clear()

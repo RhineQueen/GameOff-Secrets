@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=22 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
@@ -16,6 +16,12 @@ bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 [sub_resource type="Theme" id="Theme_r4c3q"]
 default_font = ExtResource("1_vpoiy")
 default_font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eguma"]
+bg_color = Color(0.196078, 0.803922, 0.196078, 0.0980392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wetox"]
+bg_color = Color(0.196078, 0.803922, 0.196078, 0.294118)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb7m0"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -67,6 +73,17 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme = SubResource("Theme_r4c3q")
 theme_override_constants/separation = 10
+
+[node name="time_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_eguma")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wetox")
+max_value = 60.0
+step = 1.0
+value = 60.0
+show_percentage = false
 
 [node name="GameInfo" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
 layout_mode = 2
@@ -122,22 +139,25 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_gl2c2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lo8e4")
+max_value = 20.0
 step = 1.0
-value = 25.0
+value = 20.0
 
 [node name="completion_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cymo1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cgf81")
-value = 75.0
+max_value = 20.0
+step = 1.0
+value = 20.0
 
 [node name="TESTButton" type="Button" parent="."]
 layout_mode = 2
-offset_left = 1336.0
-offset_top = 9.0
-offset_right = 1433.0
-offset_bottom = 46.0
+offset_left = 1330.0
+offset_top = 841.0
+offset_right = 1427.0
+offset_bottom = 878.0
 text = "TEST"
 
 [node name="DataCompiler" type="Node" parent="."]
@@ -155,6 +175,10 @@ script = ExtResource("7_025sy")
 [node name="ResultCheck" type="Node" parent="."]
 script = ExtResource("8_lhb8j")
 
+[node name="round_timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
 [connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]
 [connection signal="generate_data" from="." to="PlaintextData" method="_on_game_generate_data"]
@@ -163,10 +187,12 @@ script = ExtResource("8_lhb8j")
 [connection signal="tutorial_check_results" from="." to="ResultCheck" method="_on_game_tutorial_check_results"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
-[connection signal="pressed" from="TESTButton" to="DataCompiler" method="_on_test_button_pressed"]
+[connection signal="pressed" from="TESTButton" to="." method="_on_test_button_pressed"]
 [connection signal="new_final_data" from="DataCompiler" to="." method="_on_data_compiler_new_final_data"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="." method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="DataCompiler" method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_plaintext" from="PlaintextData" to="DataEncoder" method="_on_plaintext_data_new_plaintext"]
 [connection signal="new_encoded" from="DataEncoder" to="DataCompiler" method="_on_data_encoder_new_encoded"]
 [connection signal="results_complete" from="ResultCheck" to="." method="_on_result_check_results_complete"]
+[connection signal="timeout" from="round_timer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="round_timer" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_round_timer_timeout"]
