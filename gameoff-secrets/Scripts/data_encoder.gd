@@ -8,11 +8,11 @@ var temp_data: String
 
 func _on_plaintext_data_new_plaintext(plaintext_data: Array) -> void:
 	temp_data = plaintext_data[0]
-	#TODO add checks for encoding
+	#check for encoding
 	match plaintext_data[1]:
 		0:#plaintext, do nothing
 			pass
-		1:#Scovex font, italics
+		1:#Scovex font, break italics
 			temp_data = "[i]" + temp_data
 			temp_data += "[/i]"
 		2:#junk data, encipher and encode

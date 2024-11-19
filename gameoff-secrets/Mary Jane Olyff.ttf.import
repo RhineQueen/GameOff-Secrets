@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b2c6xixou74fl"
-path="res://.godot/imported/Echolot.ttf-b46f93f2b98141827b133227c69fd8ae.fontdata"
+uid="uid://cif4fuoh1g1lb"
+path="res://.godot/imported/Mary Jane Olyff.ttf-95a0c285ae08582fc49531bcf7ceeff0.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Echolot.ttf"
-dest_files=["res://.godot/imported/Echolot.ttf-b46f93f2b98141827b133227c69fd8ae.fontdata"]
+source_file="res://Mary Jane Olyff.ttf"
+dest_files=["res://.godot/imported/Mary Jane Olyff.ttf-95a0c285ae08582fc49531bcf7ceeff0.fontdata"]
 
 [params]
 

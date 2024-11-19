@@ -59,7 +59,7 @@ func make_keywords(num_of_words: int)-> Array[String]:
 			if new_params[word][param] != 0:
 				match param_to_check:
 					0:#set Keyword
-						new_word = PuzzleDictionary.keyword_builder_key.get(new_params[word][param]) + new_word
+						new_word = "@BASH " + PuzzleDictionary.keyword_builder_key.get(new_params[word][param]) + new_word
 					1:#add Colour to front and back
 						new_word = PuzzleDictionary.colour_builder_key_a.get(new_params[word][param]) + new_word
 						new_word += PuzzleDictionary.colour_builder_key_b.get(new_params[word][param])
@@ -79,17 +79,10 @@ func insert_keywords(keywords: Array[String], text: String)-> String:
 	
 	while keywords.size() > 0:
 		#var insert_pnt: int = randi_range(1, keywords.size())
-		text_array.insert(randi_range(1, max_range), keywords.pop_front())
+		text_array.insert(randi_range(1, max_range),keywords.pop_front())
 	
 	#finalize array into string, replacing spaces, and return string.
 	for i in text_array:
 		finalized += String(i) + " "
 	
 	return finalized
-
-
-
-#func _on_test_button_pressed() -> void:
-	#new_params = [[1,3,2],[2,1,0],[3,0,1],[4,2,3]]
-	#final_data = insert_keywords(temp_keywords, DataStorage.text_strings.pick_random())#should later be new_encoded instead of pick random
-	#print(final_data)

@@ -12,19 +12,20 @@ extends Control
 @onready var data_display: RichTextLabel = $BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer/DataDisplay
 @onready var life_bar: ProgressBar = $BG/MarginContainer/Gamescreen/life_bar
 @onready var completion_bar: ProgressBar = $BG/MarginContainer/Gamescreen/completion_bar
+@onready var manual: PanelContainer = $Manual
+
 #input components
 @onready var input: LineEdit = $BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input
 
 #TODO IF I HAVE TIME add specific feedback for wrong answers
 
 #constants
-const RELEASEME = preload("res://Fonts/releaseme.ttf")
 const WIN_VAL: int = 20
 const MAX_LIFE: int = 10
 
 #signals
 signal setup_signals
-signal generate_data
+signal generate_data(completeion_progress: int)
 signal tutorial_check_results(player_input: String, puzzle_params: Array[Array])
 signal check_results(player_input: String, puzzle_params: Array[Array])
 
@@ -49,9 +50,20 @@ func _ready() -> void:
 	current_puzzle_params = [[1,1,1]]
 
 func _process(delta: float) -> void:
-	#scheck win/loss
+	#check win/loss
 	winloss_handle()
+	#toggle manual
+	#show new data
 	update_display(current_screen_data)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Tab"):
+		manual.visible = true
+		input.release_focus()
+	elif event.is_action_released("Tab"):
+		manual.visible = false
+		input.grab_focus()
+
 
 #Process player input and 
 func _on_input_text_submitted(new_text: String) -> void:
@@ -72,7 +84,7 @@ func _on_result_check_results_complete(correct_entries: int, incorrect_entries: 
 	if in_intro:
 		if correct_entries == 3:
 			in_intro = false
-			generate_data.emit()
+			generate_data.emit(completion_progress)
 		else:
 			pass
 	else :#normal gameplay
@@ -82,7 +94,7 @@ func _on_result_check_results_complete(correct_entries: int, incorrect_entries: 
 
 		#Signal PlaintextData and PuzzleGenerator to trigger a new puzzle if winstate is normal.
 		if winstate == 0:
-			generate_data.emit()
+			generate_data.emit(completion_progress)
 
 
 #Store data from puzzle gen and enciphering
@@ -94,8 +106,15 @@ func _on_data_compiler_new_final_data(final_data: String) -> void:
 	data_display.text = current_screen_data
 	round_timer.start()
 
-
+#TODO have completeion percent lower the timer from 60 at start to 30 at end
 func _on_round_timer_timeout() -> void:
+	if completion_progress < 4:#early game, one minute per
+		round_timer.wait_time = 60
+	elif completion_progress < 14:#midgame, 45 sec
+		round_timer.wait_time = 45
+	else:#late game, 30 sec
+		round_timer.wait_time = 30
+		
 	check_results.emit("", current_puzzle_params)
 
 
@@ -124,4 +143,4 @@ func winloss_handle():
 
 
 func _on_test_button_pressed() -> void:
-	completion_progress = WIN_VAL
+	current_screen_data = "[i]Here is a bunch of SCARY and SPooPY Scovex TEXT to see what the CAPS and 1234567890 .,:'"

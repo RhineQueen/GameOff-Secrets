@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_wkkqi"]
 [ext_resource type="FontFile" uid="uid://dcyy5o1ebxldj" path="res://Fonts/Setiperu-lgvy.ttf" id="3_8guhw"]
 [ext_resource type="Script" path="res://Scripts/data_compiler.gd" id="4_aushr"]
-[ext_resource type="FontFile" uid="uid://cif4fuoh1g1lb" path="res://Mary Jane Olyff.ttf" id="5_fv652"]
 [ext_resource type="Script" path="res://Scripts/puzzle_generator.gd" id="5_pllv3"]
+[ext_resource type="FontFile" uid="uid://by214588wnri" path="res://EpsonMxSeriesDmp-ZVRG8.ttf" id="5_y4dnk"]
 [ext_resource type="Script" path="res://Scripts/plaintext_data.gd" id="6_6ba52"]
 [ext_resource type="Script" path="res://Scripts/data_encoder.gd" id="7_025sy"]
 [ext_resource type="Script" path="res://Scripts/result_check.gd" id="8_lhb8j"]
@@ -176,9 +176,9 @@ theme_override_constants/margin_bottom = 20
 
 [node name="ManualText" type="RichTextLabel" parent="Manual/MarginContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0.0980392, 1)
-theme_override_fonts/normal_font = ExtResource("5_fv652")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_colors/default_color = Color(0, 0, 0.0980392, 0.745098)
+theme_override_fonts/normal_font = ExtResource("5_y4dnk")
+theme_override_font_sizes/normal_font_size = 30
 text = "Response Rules
 
 Keywords determine what response phrase should be typed:
