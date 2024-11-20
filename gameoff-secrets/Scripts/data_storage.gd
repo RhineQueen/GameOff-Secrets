@@ -10,10 +10,10 @@ func _ready() -> void:
 		0:"Hello! This is just a test for now! [PRESS ENTER]",
 		1:"Welcome to the TEST TUTORIAL! [PRESS ENTER]",
 		2:"Observe now, this block od text data. You must identfy the keyword in the data and type the correct response. A keyword is always indicated by @BASH.",
-		3:"Observe now, the included Manual.pdf for keyword variants and appropriate responses.",
+		3:"Observe now, [HOLD TAB] to review the included manual for keyword variants and appropriate responses.",
 		4:"Observe now, the [color=royalblue]blue bar[/color] at the bottom of your screen. This is your Connection Integrity. Correctly responding to the keyword will increase your Connection Integrity. If it reaches 100%, you win!",
 		5:"Observe now, the [color=crimson]red bar[/color] at the bottom of your screen. This is your Firewall Integrity. Incorrectly responding to the keyword will decrease your Firewall Integrity. If it reaches 0%, you lose.",
-		6:"Observe now, the [color=limegreen]green bar[/color] at the top of your screen. This is your Uplink Integrity. Taking too long to respond to a data block will also decrease your Firewall Integrity.",
+		6:"Observe now, the [color=limegreen]green bar[/color] at the top of your screen. This is your Data Integrity. Taking too long to respond to a data block will decrease your Firewall Integrity.",
 		7:"To ensure your understanding of the response rules, observe now, the Manual and respond to: (([color=crimson]@BASH ContVal[/color])) to begin."
 	}
 	

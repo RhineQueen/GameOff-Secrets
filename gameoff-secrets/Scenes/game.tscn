@@ -165,14 +165,6 @@ max_value = 20.0
 step = 1.0
 value = 20.0
 
-[node name="TESTButton" type="Button" parent="."]
-layout_mode = 2
-offset_left = 1330.0
-offset_top = 841.0
-offset_right = 1427.0
-offset_bottom = 878.0
-text = "TEST"
-
 [node name="DataCompiler" type="Node" parent="."]
 script = ExtResource("4_aushr")
 
@@ -262,13 +254,19 @@ Flares around the keyword determine a symbol that must be placed at the end of t
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
+[node name="TESTButton" type="Button" parent="nocrt"]
+offset_left = 1330.0
+offset_top = 841.0
+offset_right = 1427.0
+offset_bottom = 878.0
+text = "TEST"
+
 [connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]
 [connection signal="generate_data" from="." to="PlaintextData" method="_on_game_generate_data"]
 [connection signal="tutorial_check_results" from="." to="ResultCheck" method="_on_game_tutorial_check_results"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
 [connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
-[connection signal="pressed" from="TESTButton" to="." method="_on_test_button_pressed"]
 [connection signal="new_final_data" from="DataCompiler" to="." method="_on_data_compiler_new_final_data"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="." method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="DataCompiler" method="_on_puzzle_generator_new_puzzle_params"]
@@ -277,3 +275,4 @@ drag_and_drop_selection_enabled = false
 [connection signal="results_complete" from="ResultCheck" to="." method="_on_result_check_results_complete"]
 [connection signal="timeout" from="round_timer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="round_timer" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_round_timer_timeout"]
+[connection signal="pressed" from="nocrt/TESTButton" to="." method="_on_test_button_pressed"]

@@ -106,7 +106,7 @@ func _on_data_compiler_new_final_data(final_data: String) -> void:
 	data_display.text = current_screen_data
 	round_timer.start()
 
-#TODO have completeion percent lower the timer from 60 at start to 30 at end
+#Completeion percent lowers the timer from 60 at start to 30 at end
 func _on_round_timer_timeout() -> void:
 	if completion_progress < 4:#early game, one minute per
 		round_timer.wait_time = 60
@@ -143,4 +143,4 @@ func winloss_handle():
 
 
 func _on_test_button_pressed() -> void:
-	current_screen_data = "[i]Here is a bunch of SCARY and SPooPY Scovex TEXT to see what the CAPS and 1234567890 .,:'"
+	current_screen_data = "THERE IS SOME TEST TEXT HERE\nAND SOME MORE TEXT HERE"

@@ -18,6 +18,9 @@ func generate_new():
 	#clear vars
 	keyword.clear()
 	parameters.clear()
+	
+	#TODO IF I CAN MAKE THE CHEKCER ACTUALLY CHECK MULTIPLE KEYWORDS
+	#make higher overall completion percent influence the number of keywords in the puzzle
 	#Decide how many keywords are in this puzzle based on the player's progress.(1-4)
 	num_of_keywords = 1
 	#Loop keyword generation for number of keywords
@@ -33,11 +36,9 @@ func generate_keyword() -> Array[int]:
 	#var equate_var_val: int = 0
 	var key_array: Array[int]
 	
-	#TODO IF I CAN MAKE THE CHEKCER ACTUALLY CHECK MULTIPLE KEYWORDS
-	#make higher overall completion percent influence the number of keywords in the puzzle
+
 	
-	#TODO influence the number of modifiers on the keyword
-	
+	#Completeion progress influences the number of modifiers on the keyword
 	#Pick a Keyword value between 1 and 8. 0 is the default and used for error catching.
 	keyword_val = randi_range(1,8)
 	

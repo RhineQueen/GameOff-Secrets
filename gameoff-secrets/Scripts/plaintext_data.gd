@@ -19,7 +19,7 @@ func get_from_storage()->String:
 	var new_string: String
 	
 	
-	#TODO make completion influence text depth. More completion = more depth
+	#Completion influences text depth. More completion = more depth
 	#return int 0-2 for checking in encoder. 0 - no cypher, 1 - italics(Scovex font), 2 - cipher and leet encode
 	if comp_progress < 4:
 		text_depth = 0
