@@ -51,7 +51,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	#check win/loss
-	winloss_handle()
+	if lives <= 0 || completion_progress >= WIN_VAL:
+		winloss_handle()
 	#toggle manual
 	#show new data
 	update_display(current_screen_data)
@@ -96,6 +97,17 @@ func _on_result_check_results_complete(correct_entries: int, incorrect_entries: 
 		if winstate == 0:
 			generate_data.emit(completion_progress)
 
+func _on_result_check_reset_game() -> void:
+	#reset life and progress
+	lives = MAX_LIFE
+	completion_progress = 0
+	winstate = 0
+	#setup for tutorial
+	intro_step = 0
+	in_intro = true
+	current_screen_data = DataStorage.tut_text_strings.get(intro_step)
+	current_puzzle_params = [[1,1,1]]
+
 
 #Store data from puzzle gen and enciphering
 func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
@@ -104,6 +116,7 @@ func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
 func _on_data_compiler_new_final_data(final_data: String) -> void:
 	current_screen_data = final_data
 	data_display.text = current_screen_data
+	#TODO commented out for testing reenable for release
 	round_timer.start()
 
 #Completeion percent lowers the timer from 60 at start to 30 at end
@@ -126,21 +139,47 @@ func update_display(new_data: String):
 	time_bar.value = int(round_timer.time_left)
 
 func winloss_handle():
-	if lives <= 0:
-		winstate = 2
-		round_timer.stop()
-		#check the next comment. Call the mentioned ending handler here
-		input.editable = false
+	round_timer.stop()
 	
-	if completion_progress >= WIN_VAL:
+	#Lose
+	if lives <= 0 && winstate != 2:
+		winstate = 2
+		current_screen_data = "Employee Failure. Report to the Board for immediate career assessment.\n[type RESET to try again]"
+	
+	#win
+	if completion_progress >= WIN_VAL && winstate != 1:
 		winstate = 1
-		round_timer.stop()
 		#TODO IF I HAVE TIME create an ending_handler that gets signaled here instead of directly stting the data. 
 		#End handler is a match statrement that reads the win state and, like tutorial,
 		#interates through some text, but bypasses results_check for it's own handling.
-		current_screen_data = "WIN TEXT HERE! YAY!"
-
-
+		current_screen_data = "Data Decryption Successful"
+		await get_tree().create_timer(2).timeout
+		current_screen_data = "Mathanwy Station External Link Connected"
+		await get_tree().create_timer(2).timeout
+		current_screen_data = "ERROR Unexpected Upload"
+		await get_tree().create_timer(1.5).timeout
+		current_screen_data = "ERROR Firewall Failure"
+		await get_tree().create_timer(1).timeout
+		current_screen_data = "ERROR Malicious Code Injection Detected. Source Upload:[i]SDC:01:ROOT[/i]"
+		await get_tree().create_timer(1).timeout
+		current_screen_data = "ERROR [i]root access[/i] Attempt"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR Unknown Root Access"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]A11 y0ur ba53 ar3 b310ng t0 u5[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]YOu hav3 n0 chanc3 t0 5urviv3 mak3 y0ur tim3[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]L1nk Ne3w0rk C0nn3cti0n 35tab1i5h3d[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]R3p3ating R00t 5igna1 Br0adca5t[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]Mat3ria1iz3r N3tw0rk 53tab1i5h3d[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "ERROR [i]B3gin 5warm Mat3ria1izati0n[/i]"
+		await get_tree().create_timer(.5).timeout
+		current_screen_data = "[i]PERFECT SIGNAL. UNDYING METAL.[/i]"
+		
 
 func _on_test_button_pressed() -> void:
-	current_screen_data = "THERE IS SOME TEST TEXT HERE\nAND SOME MORE TEXT HERE"
+	completion_progress = WIN_VAL

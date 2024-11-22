@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
-uniform float crt_brightness: hint_range(0.0, 4.0) = 4.0;
+uniform float crt_brightness: hint_range(0.0, 3.0) = 3.0;
 uniform float crt_ghost: hint_range(0.0, 10.0) = 3.0;
 uniform float crt_grid: hint_range(0.0, 1.0) = 0.4;
 uniform float crt_noise: hint_range(0.0, 1.0) = 0.0;

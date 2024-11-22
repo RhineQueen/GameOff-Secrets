@@ -1,6 +1,7 @@
 extends Node
 
 signal results_complete(correct_entries: int, incorrect_entries: int)
+signal reset_game
 
 var correct : int
 var incorrect : int
@@ -25,7 +26,9 @@ func _on_game_check_results(player_input: String, puzzle_params: Array[Array]) -
 	var results: Array[bool]
 	
 	#check and account for input size 
-	if player_input == "":
+	if player_input.begins_with("RESET") || player_input.begins_with("reset"):
+		reset_game.emit()
+	elif player_input == "":
 		incorrect = parameters_to_assess.size()*3
 		check_logic(input_to_assess, parameters_to_assess)
 	elif input_to_assess.size() < parameters_to_assess.size():
