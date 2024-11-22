@@ -256,6 +256,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
 [node name="TESTButton" type="Button" parent="nocrt"]
+visible = false
 offset_left = 1330.0
 offset_top = 841.0
 offset_right = 1427.0
