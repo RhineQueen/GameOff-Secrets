@@ -13,7 +13,15 @@ extends Control
 @onready var life_bar: ProgressBar = $BG/MarginContainer/Gamescreen/life_bar
 @onready var completion_bar: ProgressBar = $BG/MarginContainer/Gamescreen/completion_bar
 @onready var manual: PanelContainer = $nocrt/Manual
-
+@onready var doxx_logo: Sprite2D = $crt/DoxxLogo
+@onready var screen_black: ColorRect = $crt/ScreenBlack
+#sound components
+@onready var bgs: AudioStreamPlayer2D = $Sounds/bgs
+@onready var startup: AudioStreamPlayer2D = $Sounds/startup
+@onready var end_start: AudioStreamPlayer2D = $Sounds/end_start
+@onready var end_loop: AudioStreamPlayer2D = $Sounds/end_loop
+@onready var correct_ping: AudioStreamPlayer2D = $Sounds/correct_ping
+@onready var incorrect_ping: AudioStreamPlayer2D = $Sounds/incorrect_ping
 #input components
 @onready var input: LineEdit = $BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input
 
@@ -40,14 +48,8 @@ var lives: int
 
 
 func _ready() -> void:
-	#reset life and progress
-	lives = MAX_LIFE
-	completion_progress = 0
-	#setup for tutorial
-	intro_step = 0
-	in_intro = true
-	current_screen_data = DataStorage.tut_text_strings.get(intro_step)
-	current_puzzle_params = [[1,1,1]]
+	setup_newgame()
+
 
 func _process(delta: float) -> void:
 	#check win/loss
@@ -56,6 +58,33 @@ func _process(delta: float) -> void:
 	#toggle manual
 	#show new data
 	update_display(current_screen_data)
+
+func setup_newgame():
+	#stop old sounds
+	bgs.stop()
+	end_loop.stop()
+	#reset intro
+	screen_black.self_modulate = Color(1,1,1,1)
+	doxx_logo.self_modulate = Color(1,1,1,1)
+	#reset life and progress
+	lives = MAX_LIFE
+	completion_progress = 0
+	winstate = 0
+	#setup for tutorial
+	intro_step = 0
+	in_intro = true
+	current_screen_data = DataStorage.tut_text_strings.get(intro_step)
+	current_puzzle_params = [[1,1,1]]
+	#intro visuals and sounds
+	startup.play()
+	await get_tree().create_timer(.2).timeout
+	var tween1 = create_tween()
+	tween1.tween_property(screen_black, "self_modulate", Color(1,1,1,0), .5)
+	await get_tree().create_timer(.5).timeout
+	bgs.play()
+	await get_tree().create_timer(2.5).timeout
+	var tween2 = create_tween()
+	tween2.tween_property(doxx_logo, "self_modulate", Color(1,1,1,0), .5)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Tab"):
@@ -98,15 +127,7 @@ func _on_result_check_results_complete(correct_entries: int, incorrect_entries: 
 			generate_data.emit(completion_progress)
 
 func _on_result_check_reset_game() -> void:
-	#reset life and progress
-	lives = MAX_LIFE
-	completion_progress = 0
-	winstate = 0
-	#setup for tutorial
-	intro_step = 0
-	in_intro = true
-	current_screen_data = DataStorage.tut_text_strings.get(intro_step)
-	current_puzzle_params = [[1,1,1]]
+	setup_newgame()
 
 
 #Store data from puzzle gen and enciphering
@@ -152,18 +173,19 @@ func winloss_handle():
 		#TODO IF I HAVE TIME create an ending_handler that gets signaled here instead of directly stting the data. 
 		#End handler is a match statrement that reads the win state and, like tutorial,
 		#interates through some text, but bypasses results_check for it's own handling.
+		end_start.play()
 		current_screen_data = "Data Decryption Successful"
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(3).timeout
 		current_screen_data = "Mathanwy Station External Link Connected"
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(3).timeout
 		current_screen_data = "ERROR Unexpected Upload"
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(2.5).timeout
 		current_screen_data = "ERROR Firewall Failure"
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		current_screen_data = "ERROR Malicious Code Injection Detected. Source Upload:[i]SDC:01:ROOT[/i]"
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1.5).timeout
 		current_screen_data = "ERROR [i]root access[/i] Attempt"
-		await get_tree().create_timer(.5).timeout
+		await get_tree().create_timer(1).timeout
 		current_screen_data = "ERROR Unknown Root Access"
 		await get_tree().create_timer(.5).timeout
 		current_screen_data = "ERROR [i]A11 y0ur ba53 ar3 b310ng t0 u5[/i]"
@@ -178,8 +200,28 @@ func winloss_handle():
 		await get_tree().create_timer(.5).timeout
 		current_screen_data = "ERROR [i]B3gin 5warm Mat3ria1izati0n[/i]"
 		await get_tree().create_timer(.5).timeout
+		end_loop.play()
 		current_screen_data = "[i]PERFECT SIGNAL. UNDYING METAL.[/i]"
-		
 
 func _on_test_button_pressed() -> void:
 	completion_progress = WIN_VAL
+
+#audio feedback on results
+func _on_result_check_correct_ping() -> void:
+	if correct_ping.playing:
+		await correct_ping.finished
+		correct_ping.play()
+	elif incorrect_ping.playing:
+		await incorrect_ping.finished
+		correct_ping.play()
+	else:
+		correct_ping.play()
+func _on_result_check_incorrect_ping() -> void:
+	if correct_ping.playing:
+		await correct_ping.finished
+		incorrect_ping.play()
+	elif incorrect_ping.playing:
+		await incorrect_ping.finished
+		incorrect_ping.play()
+	else:
+		incorrect_ping.play()

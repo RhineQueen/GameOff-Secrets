@@ -59,7 +59,7 @@ func make_keywords(num_of_words: int)-> Array[String]:
 			if new_params[word][param] != 0:
 				match param_to_check:
 					0:#set Keyword
-						new_word = "@BASH " + PuzzleDictionary.keyword_builder_key.get(new_params[word][param]) + new_word
+						new_word = PuzzleDictionary.keyword_builder_key.get(new_params[word][param]) + new_word
 					1:#add Colour to front and back
 						new_word = PuzzleDictionary.colour_builder_key_a.get(new_params[word][param]) + new_word
 						new_word += PuzzleDictionary.colour_builder_key_b.get(new_params[word][param])
@@ -67,7 +67,7 @@ func make_keywords(num_of_words: int)-> Array[String]:
 						new_word = PuzzleDictionary.flare_builder_key_a.get(new_params[word][param]) + new_word
 						new_word += PuzzleDictionary.flare_builder_key_b.get(new_params[word][param])
 			param_to_check += 1
-		new_keywords.append(new_word)
+		new_keywords.append("[b]@bash" + new_word + "[/b]")
 	
 	return new_keywords
 

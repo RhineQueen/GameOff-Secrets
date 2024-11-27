@@ -2,6 +2,8 @@ extends Node
 
 signal results_complete(correct_entries: int, incorrect_entries: int)
 signal reset_game
+signal correct_ping
+signal incorrect_ping
 
 var correct : int
 var incorrect : int
@@ -62,9 +64,11 @@ func check_logic(input_to_assess: PackedStringArray, parameters_to_assess: Array
 		#check for keyword
 		if input_to_assess[input_assessing_pntr].contains(PuzzleDictionary.keyword_key.get(parameters_to_assess[input_assessing_pntr][params_assessing_pntr])):
 			print("GOOD keyword")
+			correct_ping.emit()
 			correct += 1
 		else:
 			print("OOPS keyword")
+			incorrect_ping.emit()
 			incorrect += 1
 		
 		#increment params assessing_pntr to assess colour
@@ -73,9 +77,11 @@ func check_logic(input_to_assess: PackedStringArray, parameters_to_assess: Array
 		if (parameters_to_assess[input_assessing_pntr][params_assessing_pntr]) != 0:
 			if input_to_assess[input_assessing_pntr].begins_with(PuzzleDictionary.colour_key.get(parameters_to_assess[input_assessing_pntr][params_assessing_pntr])):
 				print("GOOD colour")
+				correct_ping.emit()
 				correct += 1
 			else:
 				print("OOPS colour")
+				incorrect_ping.emit()
 				incorrect += 1
 		else:
 			print("NO colour")
@@ -86,9 +92,11 @@ func check_logic(input_to_assess: PackedStringArray, parameters_to_assess: Array
 		if (parameters_to_assess[input_assessing_pntr][params_assessing_pntr]) != 0:
 			if input_to_assess[input_assessing_pntr].ends_with(PuzzleDictionary.flare_key.get(parameters_to_assess[input_assessing_pntr][params_assessing_pntr])):
 				print("GOOD flare")
+				correct_ping.emit()
 				correct += 1
 			else:
 				print("OOPS flare")
+				incorrect_ping.emit()
 				incorrect += 1
 		else:
 			print("NO flare")

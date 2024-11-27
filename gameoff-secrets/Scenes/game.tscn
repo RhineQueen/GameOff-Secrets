@@ -1,17 +1,24 @@
-[gd_scene load_steps=27 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=34 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_wkkqi"]
 [ext_resource type="FontFile" uid="uid://dcyy5o1ebxldj" path="res://Fonts/Setiperu-lgvy.ttf" id="3_8guhw"]
 [ext_resource type="Script" path="res://Scripts/data_compiler.gd" id="4_aushr"]
+[ext_resource type="FontFile" uid="uid://ba6qoiqqq68br" path="res://Fonts/MerchantCopyDoublesize-jE7R.ttf" id="4_ulr4l"]
 [ext_resource type="FontFile" uid="uid://c4gcb3wh1uhqq" path="res://Fonts/EpsonMxSeriesDmp-ZVRG8.ttf" id="5_e2oq1"]
 [ext_resource type="Script" path="res://Scripts/puzzle_generator.gd" id="5_pllv3"]
 [ext_resource type="Script" path="res://Scripts/plaintext_data.gd" id="6_6ba52"]
 [ext_resource type="Script" path="res://Scripts/data_encoder.gd" id="7_025sy"]
 [ext_resource type="Script" path="res://Scripts/result_check.gd" id="8_lhb8j"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="11_h73tq"]
-[ext_resource type="Texture2D" uid="uid://ci3j652wq7j6f" path="res://icon.svg" id="11_lla7o"]
+[ext_resource type="Texture2D" uid="uid://q3q25mumrll7" path="res://DOXXtech logo.png" id="11_uvlpr"]
+[ext_resource type="AudioStream" uid="uid://bqujn053oc4h3" path="res://Sounds/running_loop.wav" id="14_8mvsj"]
+[ext_resource type="AudioStream" uid="uid://d5kk036j4s5o" path="res://Sounds/startup_click.wav" id="15_ub5nr"]
+[ext_resource type="AudioStream" uid="uid://dd5khjlpfs87e" path="res://Sounds/ending_connect.wav" id="16_6qnjg"]
+[ext_resource type="AudioStream" uid="uid://10x8e0d6b3px" path="res://Sounds/ending_loop.wav" id="17_k88vr"]
+[ext_resource type="AudioStream" uid="uid://b04axjvy1u3ye" path="res://Sounds/correct_beep.wav" id="18_s4o57"]
+[ext_resource type="AudioStream" uid="uid://ku6d8rg0kwod" path="res://Sounds/incorrect_beep.wav" id="19_yev6r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4c2w"]
 bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
@@ -113,10 +120,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/line_separation = 5
 theme_override_fonts/italics_font = ExtResource("3_8guhw")
+theme_override_fonts/bold_font = ExtResource("4_ulr4l")
 theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "[i]secret scovex text here[/i]terst
-[color=gold][[ContVal]][/color]((PointInt))[color=crimson]TilReup[/color][color=royalblue]{{CalVerr}}[/color]"
+[b][color=gold][[ContVal]][/color]((PointInt))[color=crimson]TilReup[/color][color=royalblue]{{CalVerr}}[/color]"
 fit_content = true
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
@@ -187,12 +196,19 @@ one_shot = true
 
 [node name="crt" type="CanvasLayer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="crt"]
-visible = false
-scale = Vector2(11.3203, 7.5)
-texture = ExtResource("11_lla7o")
+[node name="DoxxLogo" type="Sprite2D" parent="crt"]
+scale = Vector2(2.88, 1.92)
+texture = ExtResource("11_uvlpr")
 centered = false
 region_rect = Rect2(0, 0, 100, 100)
+
+[node name="ScreenBlack" type="ColorRect" parent="crt"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="crt"]
 material = SubResource("ShaderMaterial_xrkqu")
@@ -263,6 +279,26 @@ offset_right = 1427.0
 offset_bottom = 878.0
 text = "TEST"
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="bgs" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_8mvsj")
+
+[node name="startup" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_ub5nr")
+
+[node name="end_start" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_6qnjg")
+
+[node name="end_loop" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("17_k88vr")
+
+[node name="correct_ping" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("18_s4o57")
+
+[node name="incorrect_ping" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("19_yev6r")
+
 [connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]
 [connection signal="generate_data" from="." to="PlaintextData" method="_on_game_generate_data"]
@@ -274,6 +310,8 @@ text = "TEST"
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="DataCompiler" method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_plaintext" from="PlaintextData" to="DataEncoder" method="_on_plaintext_data_new_plaintext"]
 [connection signal="new_encoded" from="DataEncoder" to="DataCompiler" method="_on_data_encoder_new_encoded"]
+[connection signal="correct_ping" from="ResultCheck" to="." method="_on_result_check_correct_ping"]
+[connection signal="incorrect_ping" from="ResultCheck" to="." method="_on_result_check_incorrect_ping"]
 [connection signal="reset_game" from="ResultCheck" to="." method="_on_result_check_reset_game"]
 [connection signal="results_complete" from="ResultCheck" to="." method="_on_result_check_results_complete"]
 [connection signal="timeout" from="round_timer" to="." method="_on_round_timer_timeout"]
