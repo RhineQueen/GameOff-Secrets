@@ -160,18 +160,18 @@ func _on_puzzle_generator_new_puzzle_params(parameters: Array[Array]) -> void:
 func _on_data_compiler_new_final_data(final_data: String) -> void:
 	current_screen_data = final_data
 	data_display.text = current_screen_data
-	#TODO commented out for testing reenable for release
-	round_timer.start()
-
-#Completeion percent lowers the timer from 60 at start to 30 at end
-func _on_round_timer_timeout() -> void:
+	#Completeion percent lowers the timer from 60 at start to 30 at end
 	if completion_progress < 4:#early game, one minute per
 		round_timer.wait_time = 60
 	elif completion_progress < 14:#midgame, 45 sec
 		round_timer.wait_time = 45
 	else:#late game, 30 sec
 		round_timer.wait_time = 30
-		
+	time_bar.max_value = round_timer.wait_time
+	round_timer.start()
+
+#Completeion percent lowers the timer from 60 at start to 30 at end
+func _on_round_timer_timeout() -> void:
 	check_results.emit("", current_puzzle_params)
 
 
@@ -183,7 +183,8 @@ func update_display(new_data: String):
 	time_bar.value = int(round_timer.time_left)
 
 func winloss_handle():
-	round_timer.stop()
+	if winstate != 0:
+		round_timer.stop()
 	
 	#Lose
 	if lives <= 0 && winstate != 2:
