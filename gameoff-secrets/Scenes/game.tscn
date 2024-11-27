@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bp7kvn5fiwg8d"]
+[gd_scene load_steps=38 format=3 uid="uid://bp7kvn5fiwg8d"]
 
 [ext_resource type="Script" path="res://Scripts/input.gd" id="1_1r508"]
 [ext_resource type="FontFile" uid="uid://ciw1lr8jmf73g" path="res://Fonts/MayfairNbpBold-gAA4.ttf" id="1_vpoiy"]
@@ -19,6 +19,10 @@
 [ext_resource type="AudioStream" uid="uid://10x8e0d6b3px" path="res://Sounds/ending_loop.wav" id="17_k88vr"]
 [ext_resource type="AudioStream" uid="uid://b04axjvy1u3ye" path="res://Sounds/correct_beep.wav" id="18_s4o57"]
 [ext_resource type="AudioStream" uid="uid://ku6d8rg0kwod" path="res://Sounds/incorrect_beep.wav" id="19_yev6r"]
+[ext_resource type="AudioStream" uid="uid://dr5lgyb7djmun" path="res://Sounds/note_shuff_1.wav" id="20_o07dp"]
+[ext_resource type="AudioStream" uid="uid://dw2608c3uppn6" path="res://Sounds/note_shuff_2.wav" id="21_i7r6p"]
+[ext_resource type="AudioStream" uid="uid://c3akhrab20dg7" path="res://Sounds/note_shuff_3.wav" id="22_qyae3"]
+[ext_resource type="AudioStream" uid="uid://n8d4lcry2s5x" path="res://Sounds/note_shuff_4.wav" id="23_b6gex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4c2w"]
 bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
@@ -221,13 +225,13 @@ grow_vertical = 2
 [node name="nocrt" type="CanvasLayer" parent="."]
 
 [node name="Manual" type="PanelContainer" parent="nocrt"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 72.0
-offset_top = 20.0
+offset_top = 960.0
 offset_right = -47.0
+offset_bottom = 940.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b0uqq")
@@ -298,6 +302,18 @@ stream = ExtResource("18_s4o57")
 
 [node name="incorrect_ping" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("19_yev6r")
+
+[node name="noteshuff_1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("20_o07dp")
+
+[node name="noteshuff_2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("21_i7r6p")
+
+[node name="noteshuff_3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("22_qyae3")
+
+[node name="noteshuff_4" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("23_b6gex")
 
 [connection signal="check_results" from="." to="ResultCheck" method="_on_game_check_results"]
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]

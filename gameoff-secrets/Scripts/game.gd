@@ -22,6 +22,10 @@ extends Control
 @onready var end_loop: AudioStreamPlayer2D = $Sounds/end_loop
 @onready var correct_ping: AudioStreamPlayer2D = $Sounds/correct_ping
 @onready var incorrect_ping: AudioStreamPlayer2D = $Sounds/incorrect_ping
+@onready var noteshuff_1: AudioStreamPlayer2D = $Sounds/noteshuff_1
+@onready var noteshuff_2: AudioStreamPlayer2D = $Sounds/noteshuff_2
+@onready var noteshuff_3: AudioStreamPlayer2D = $Sounds/noteshuff_3
+@onready var noteshuff_4: AudioStreamPlayer2D = $Sounds/noteshuff_4
 #input components
 @onready var input: LineEdit = $BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input
 
@@ -53,7 +57,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	#check win/loss
-	if lives <= 0 || completion_progress >= WIN_VAL:
+	if winstate == 0:
 		winloss_handle()
 	#toggle manual
 	#show new data
@@ -88,10 +92,30 @@ func setup_newgame():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Tab"):
-		manual.visible = true
+		match randi_range(1,4):
+			1:
+				noteshuff_1.play()
+			2:
+				noteshuff_2.play()
+			3:
+				noteshuff_3.play()
+			4:
+				noteshuff_4.play()
+		var tween3 = create_tween()
+		tween3.tween_property(manual,"global_position", Vector2(72,20), .2)
 		input.release_focus()
 	elif event.is_action_released("Tab"):
-		manual.visible = false
+		match randi_range(1,4):
+			1:
+				noteshuff_1.play()
+			2:
+				noteshuff_2.play()
+			3:
+				noteshuff_3.play()
+			4:
+				noteshuff_4.play()
+		var tween4 = create_tween()
+		tween4.tween_property(manual,"global_position", Vector2(72,960), .15)
 		input.grab_focus()
 
 
@@ -102,8 +126,7 @@ func _on_input_text_submitted(new_text: String) -> void:
 		if intro_step < DataStorage.tut_text_strings.size()-1:
 			intro_step += 1
 			current_screen_data = DataStorage.tut_text_strings.get(intro_step)
-			check_results.emit(new_text, current_puzzle_params)
-		else:
+		elif intro_step == DataStorage.tut_text_strings.size()-1:
 			check_results.emit(new_text, current_puzzle_params)
 	else:#normal gameplay
 		#Signal ResultCheck, pass new_text and stored puzzle parameters.
@@ -165,10 +188,8 @@ func winloss_handle():
 	#Lose
 	if lives <= 0 && winstate != 2:
 		winstate = 2
-		current_screen_data = "Employee Failure. Report to the Board for immediate career assessment.\n[type RESET to try again]"
-	
-	#win
-	if completion_progress >= WIN_VAL && winstate != 1:
+		current_screen_data = "Employee Failure. Report to the Board for immediate culpability assessment.\n[type RESET to try again]"
+	elif completion_progress >= WIN_VAL && winstate != 1:
 		winstate = 1
 		#TODO IF I HAVE TIME create an ending_handler that gets signaled here instead of directly stting the data. 
 		#End handler is a match statrement that reads the win state and, like tutorial,

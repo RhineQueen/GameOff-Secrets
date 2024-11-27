@@ -7,14 +7,15 @@ var tut_text_strings: Dictionary
 
 func _ready() -> void:
 	tut_text_strings = {
-		0:"[PRESS ENTER]",
-		1:"Welcome to the TEST TUTORIAL!",
+		0:"[PRESS ENTER TO PROGRESS]",
+		1:"Data Recovery Department\nDOXXtech employee #" + str(randi_range(69,420)) + "\nTodays' assigned recovery packet is: Mathanwy Orbital R&D Center fatal core crash dump.\n\n[color=crimson]HIGH PRIORITY FLAG[/color] be aware: Mathawy Station's orbit is degrading rapidly. Data recovery must be completed before critical orbit degredation. Trajectory predicts collision near 3 majour metropolitan hubs in the Sabaea Province.\nMinimum expected civilian personelle loss on impact: 248,000",
 		2:"You will observe a block of text data recovered from the Mathanwy Station emergency signal. You must identfy the keyword in the data and type the correct response. A keyword is always indicated by [b]@bash[/b].",
-		3:"Observe now, your response manual. [HOLD TAB] to review the included manual for keyword variants and appropriate responses.",
-		4:"Observe now, the [color=royalblue]blue bar[/color] at the bottom of your screen. This is your Connection Integrity. Correctly responding to the keyword will increase your Connection Integrity. If it reaches 100%, you will have successfully recovered the connection to Mathawy's mainframe.",
-		5:"Observe now, the [color=crimson]red bar[/color] at the bottom of your screen. This is your Firewall Integrity. Incorrectly responding to the keyword will decrease your Firewall Integrity. If it reaches 0%, you may be reassigned to the latrine inspection department.",
-		6:"Observe now, the [color=limegreen]green bar[/color] at the top of your screen. This is your Data Integrity. Taking too long to respond to a data block will decrease your Firewall Integrity.",
-		7:"To ensure your understanding of the response rules, observe now, the Manual and respond to: [b]@bash(([color=crimson]ContVal[/color]))[/b] to begin."
+		3:"Observe now, your response manual. [HOLD TAB] to review the provided manual for keyword variants and appropriate responses. Take a moment to familiarize yourself with the manual.",
+		4:"Observe now, the [color=royalblue]blue bar[/color] at the bottom of your screen. This is your Connection Integrity. Correctly responding to the keyword will increase your Connection Integrity. If it reaches 100%, you will have successfully recovered the connection to Mathawy's mainframe, allowing our technitians to remotely bring the station back into a stable orbit.",
+		5:"Observe now, the [color=crimson]red bar[/color] at the bottom of your screen. This is the Mathawy Center's Orbital Integrity. Wasting time incorrectly responding to the keyword will decrease the Orbital Integrity.",
+		6:"Observe now, the [color=limegreen]green bar[/color] at the top of your screen. This is your Data Packet Timer. Time is of the essence. Taking too long to respond to a data block will decrease the Orbital Integrity.",
+		7:"If Mathanwy Station's Orbital Intergrity reaches 0%, hundreds of thousands of innocent Martian civilians will die and worse, you may be reassigned to the Latrine Inspection Department, pending a culpability assessment.",
+		8:"To ensure your understanding of the response rules, observe now, the Manual and respond to: [b]@bash(([color=crimson]ContVal[/color]))[/b] to begin the data recovery process."
 	}
 	
 	text_strings_surface = [
