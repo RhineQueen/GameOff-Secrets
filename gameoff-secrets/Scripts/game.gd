@@ -215,7 +215,7 @@ func winloss_handle():
 		await get_tree().create_timer(.5).timeout
 		current_screen_data = "ERROR [i]L1nk Ne3w0rk C0nn3cti0n 35tab1i5h3d[/i]"
 		await get_tree().create_timer(.5).timeout
-		current_screen_data = "ERROR [i]R3p3ating R00t 5igna1 Br0adca5t[/i]"
+		current_screen_data = "ERROR [i]R3p3ating 50urc3 Br0adca5t[/i]"
 		await get_tree().create_timer(.5).timeout
 		current_screen_data = "ERROR [i]Mat3ria1iz3r N3tw0rk 53tab1i5h3d[/i]"
 		await get_tree().create_timer(.5).timeout
