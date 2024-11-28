@@ -183,14 +183,13 @@ func update_display(new_data: String):
 	time_bar.value = int(round_timer.time_left)
 
 func winloss_handle():
-	if winstate != 0:
-		round_timer.stop()
-	
 	#Lose
 	if lives <= 0 && winstate != 2:
+		round_timer.stop()
 		winstate = 2
 		current_screen_data = "Employee Failure. Report to the Board for immediate culpability assessment.\n[type RESET to try again]"
 	elif completion_progress >= WIN_VAL && winstate != 1:
+		round_timer.stop()
 		winstate = 1
 		#TODO IF I HAVE TIME create an ending_handler that gets signaled here instead of directly stting the data. 
 		#End handler is a match statrement that reads the win state and, like tutorial,
