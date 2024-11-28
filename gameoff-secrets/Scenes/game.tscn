@@ -77,108 +77,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wkkqi")
 
-[node name="BG" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_w4c2w")
-
-[node name="MarginContainer" type="MarginContainer" parent="BG"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Gamescreen" type="VBoxContainer" parent="BG/MarginContainer"]
-layout_mode = 2
-theme = SubResource("Theme_r4c3q")
-theme_override_constants/separation = 10
-
-[node name="time_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/background = SubResource("StyleBoxFlat_eguma")
-theme_override_styles/fill = SubResource("StyleBoxFlat_wetox")
-max_value = 30.0
-step = 1.0
-value = 30.0
-show_percentage = false
-
-[node name="GameInfo" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_bb7m0")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="BG/MarginContainer/Gamescreen/GameInfo"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="DataDisplay" type="RichTextLabel" parent="BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/line_separation = 5
-theme_override_fonts/italics_font = ExtResource("3_8guhw")
-theme_override_fonts/bold_font = ExtResource("4_ulr4l")
-theme_override_font_sizes/italics_font_size = 22
-theme_override_font_sizes/bold_font_size = 14
-bbcode_enabled = true
-text = "[i]secret scovex text here[/i]terst
-[b][color=gold][[ContVal]][/color]((PointInt))[color=crimson]TilReup[/color][color=royalblue]{{CalVerr}}[/color]"
-fit_content = true
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-
-[node name="InputArea" type="PanelContainer" parent="BG/MarginContainer/Gamescreen"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_brj82")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/Gamescreen/InputArea"]
-layout_mode = 2
-
-[node name="Caret" type="Label" parent="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
-layout_mode = 2
-text = ">"
-
-[node name="Input" type="LineEdit" parent="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qgrsl")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uof1j")
-context_menu_enabled = false
-clear_button_enabled = true
-shortcut_keys_enabled = false
-middle_mouse_paste_enabled = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
-caret_blink = true
-caret_force_displayed = true
-script = ExtResource("1_1r508")
-
-[node name="life_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_gl2c2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lo8e4")
-max_value = 10.0
-step = 1.0
-value = 10.0
-
-[node name="completion_bar" type="ProgressBar" parent="BG/MarginContainer/Gamescreen"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_cymo1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cgf81")
-max_value = 20.0
-step = 1.0
-value = 20.0
-
 [node name="DataCompiler" type="Node" parent="."]
 script = ExtResource("4_aushr")
 
@@ -200,11 +98,114 @@ one_shot = true
 
 [node name="crt" type="CanvasLayer" parent="."]
 
-[node name="DoxxLogo" type="Sprite2D" parent="crt"]
-scale = Vector2(2.88, 1.92)
+[node name="BG" type="PanelContainer" parent="crt"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w4c2w")
+
+[node name="MarginContainer" type="MarginContainer" parent="crt/BG"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Gamescreen" type="VBoxContainer" parent="crt/BG/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_r4c3q")
+theme_override_constants/separation = 10
+
+[node name="time_bar" type="ProgressBar" parent="crt/BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_eguma")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wetox")
+max_value = 30.0
+step = 1.0
+value = 30.0
+show_percentage = false
+
+[node name="GameInfo" type="PanelContainer" parent="crt/BG/MarginContainer/Gamescreen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bb7m0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="crt/BG/MarginContainer/Gamescreen/GameInfo"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="DataDisplay" type="RichTextLabel" parent="crt/BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/line_separation = 5
+theme_override_fonts/italics_font = ExtResource("3_8guhw")
+theme_override_fonts/bold_font = ExtResource("4_ulr4l")
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[i]secret scovex text here[/i]terst
+[b][color=gold][[ContVal]][/color]((PointInt))[color=crimson]TilReup[/color][color=royalblue]{{CalVerr}}[/color]"
+fit_content = true
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="InputArea" type="PanelContainer" parent="crt/BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_brj82")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="crt/BG/MarginContainer/Gamescreen/InputArea"]
+layout_mode = 2
+
+[node name="Caret" type="Label" parent="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="Input" type="LineEdit" parent="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qgrsl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uof1j")
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_force_displayed = true
+script = ExtResource("1_1r508")
+
+[node name="life_bar" type="ProgressBar" parent="crt/BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gl2c2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lo8e4")
+max_value = 10.0
+step = 1.0
+value = 10.0
+
+[node name="completion_bar" type="ProgressBar" parent="crt/BG/MarginContainer/Gamescreen"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cymo1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cgf81")
+max_value = 20.0
+step = 1.0
+value = 20.0
+
+[node name="DoxxLogo" type="TextureRect" parent="crt"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("11_uvlpr")
-centered = false
-region_rect = Rect2(0, 0, 100, 100)
 
 [node name="ScreenBlack" type="ColorRect" parent="crt"]
 anchors_preset = 15
@@ -319,8 +320,6 @@ stream = ExtResource("23_b6gex")
 [connection signal="generate_data" from="." to="PuzzleGenerator" method="_on_game_generate_data"]
 [connection signal="generate_data" from="." to="PlaintextData" method="_on_game_generate_data"]
 [connection signal="tutorial_check_results" from="." to="ResultCheck" method="_on_game_tutorial_check_results"]
-[connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
-[connection signal="text_submitted" from="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
 [connection signal="new_final_data" from="DataCompiler" to="." method="_on_data_compiler_new_final_data"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="." method="_on_puzzle_generator_new_puzzle_params"]
 [connection signal="new_puzzle_params" from="PuzzleGenerator" to="DataCompiler" method="_on_puzzle_generator_new_puzzle_params"]
@@ -331,5 +330,7 @@ stream = ExtResource("23_b6gex")
 [connection signal="reset_game" from="ResultCheck" to="." method="_on_result_check_reset_game"]
 [connection signal="results_complete" from="ResultCheck" to="." method="_on_result_check_results_complete"]
 [connection signal="timeout" from="round_timer" to="." method="_on_round_timer_timeout"]
-[connection signal="timeout" from="round_timer" to="BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_round_timer_timeout"]
+[connection signal="timeout" from="round_timer" to="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_round_timer_timeout"]
+[connection signal="text_submitted" from="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" to="crt/BG/MarginContainer/Gamescreen/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
 [connection signal="pressed" from="nocrt/TESTButton" to="." method="_on_test_button_pressed"]

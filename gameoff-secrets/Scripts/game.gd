@@ -8,12 +8,12 @@ extends Control
 @onready var result_check: Node = $ResultCheck
 @onready var round_timer: Timer = $round_timer
 #display components
-@onready var time_bar: ProgressBar = $BG/MarginContainer/Gamescreen/time_bar
-@onready var data_display: RichTextLabel = $BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer/DataDisplay
-@onready var life_bar: ProgressBar = $BG/MarginContainer/Gamescreen/life_bar
-@onready var completion_bar: ProgressBar = $BG/MarginContainer/Gamescreen/completion_bar
+@onready var time_bar: ProgressBar = $crt/BG/MarginContainer/Gamescreen/time_bar
+@onready var data_display: RichTextLabel = $crt/BG/MarginContainer/Gamescreen/GameInfo/ScrollContainer/DataDisplay
+@onready var life_bar: ProgressBar = $crt/BG/MarginContainer/Gamescreen/life_bar
+@onready var completion_bar: ProgressBar = $crt/BG/MarginContainer/Gamescreen/completion_bar
 @onready var manual: PanelContainer = $nocrt/Manual
-@onready var doxx_logo: Sprite2D = $crt/DoxxLogo
+@onready var doxx_logo: TextureRect = $crt/DoxxLogo
 @onready var screen_black: ColorRect = $crt/ScreenBlack
 #sound components
 @onready var bgs: AudioStreamPlayer2D = $Sounds/bgs

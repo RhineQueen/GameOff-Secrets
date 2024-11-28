@@ -1,0 +1,9 @@
+Lor's entry for GameOff 2024
+
+Web build has slight graphics bugs that Windows build lacks.
+
+Fonts:
+EpsonMXSeriesDmp
+MayfairNbpBold
+MerchantCopyDoublesize
+Setiperu
